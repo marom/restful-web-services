@@ -1,4 +1,4 @@
-package com.marom.restfulwebserivces;
+package com.marom.restfulwebserivces.helloworld;
 
 public class HelloWorldBean {
 

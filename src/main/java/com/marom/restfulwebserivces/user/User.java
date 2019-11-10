@@ -1,4 +1,4 @@
-package com.marom.restfulwebserivces;
+package com.marom.restfulwebserivces.user;
 
 import java.util.Date;
 
