@@ -2,6 +2,7 @@ package com.marom.restfulwebserivces;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.security.SecurityScheme;
@@ -20,6 +21,7 @@ public class OpenApiConfig {
                 .info(new Info().title("Restful Web Services API").version(appVersion).description(
                         "This is a sample of OpenAPI used in my project.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.")
                         .termsOfService("http://swagger.io/terms/")
-                        .license(new License().name("springdoc.org").url("http://springdoc.org")));
+                        .license(new License().name("springdoc.org").url("http://springdoc.org"))
+                        .contact(new Contact().name("MaroM").url("http://www.website.com").email("my.email@mail.com")));
     }
 }
