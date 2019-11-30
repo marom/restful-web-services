@@ -2,6 +2,8 @@ package com.marom.restfulwebserivces.user;
 
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.hateoas.EntityModel;
 
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
@@ -22,11 +24,13 @@ public class UserResource {
         this.userServiceDao = userServiceDao;
     }
 
+    @Operation(summary = "Get a list of all users")
     @GetMapping("/users")
     public List<User> retrieveAllUsers() {
         return userServiceDao.findAllUsers();
     }
 
+    @Operation(summary = "retrieve a user")
     @GetMapping("/users/{id}")
     public EntityModel<User> retrieveUser(@PathVariable int id) {
         User user = userServiceDao.findOne(id);
@@ -41,6 +45,7 @@ public class UserResource {
         return model;
     }
 
+    @Operation(summary = "Create a user")
     @PostMapping("/users")
     public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
         User savedUser = userServiceDao.save(user);
@@ -52,6 +57,7 @@ public class UserResource {
         return ResponseEntity.created(uri).build();
     }
 
+    @Operation(summary = "Delete a user")
     @DeleteMapping("/users/{id}")
     public void deleteUser(@PathVariable int id) {
         User user = userServiceDao.deleteById(id);
