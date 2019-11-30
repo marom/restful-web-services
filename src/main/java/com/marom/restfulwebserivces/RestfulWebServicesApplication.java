@@ -23,11 +23,4 @@ public class RestfulWebServicesApplication {
         sessionResolver.setDefaultLocale(Locale.UK);
         return sessionResolver;
     }
-
-    @Bean
-    public ResourceBundleMessageSource resourceBundleMessageSource() {
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename("messages");
-        return messageSource;
-    }
 }
