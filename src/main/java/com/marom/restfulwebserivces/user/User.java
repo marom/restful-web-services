@@ -6,7 +6,7 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-
+@Schema(description = "All details about a user.")
 public class User {
 
 
