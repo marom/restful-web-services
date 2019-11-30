@@ -27,4 +27,10 @@ public class HelloWorldController {
     public HelloWorldBean helloWorld(@PathVariable String name) {
         return new HelloWorldBean(String.format("Hello World, %s", name));
     }
+
+    @GetMapping("/goodMorning")
+    public String goodMorning(@RequestHeader(name = "Accept-Language", required = false) Locale locale) {
+        return messageSource.getMessage("good.morning.message", null, locale);
+    }
+
 }
