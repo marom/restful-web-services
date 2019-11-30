@@ -29,7 +29,7 @@ public class HelloWorldController {
         return new HelloWorldBean(String.format("Hello World, %s", name));
     }
 
-    @GetMapping("/goodMorning")
+    @GetMapping(value = "/goodMorning", produces = { "application/xml", "application/json" })
     public String goodMorning() {
         return messageSource.getMessage("good.morning.message", null, LocaleContextHolder.getLocale());
     }
