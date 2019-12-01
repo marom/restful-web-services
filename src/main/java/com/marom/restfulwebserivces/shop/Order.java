@@ -4,25 +4,22 @@ import java.util.Date;
 
 public class Order {
 
-    private Long id = null;
-    private Long petId = null;
+    private String product = null;
     private Integer quantity = null;
     private Date shipDate = null;
 
-    public Long getId() {
-        return id;
+    public Order(String product, Integer quantity, Date shipDate) {
+        this.product = product;
+        this.quantity = quantity;
+        this.shipDate = shipDate;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getProduct() {
+        return product;
     }
 
-    public Long getPetId() {
-        return petId;
-    }
-
-    public void setPetId(Long petId) {
-        this.petId = petId;
+    public void setProduct(String product) {
+        this.product = product;
     }
 
     public Integer getQuantity() {
