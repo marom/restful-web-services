@@ -8,18 +8,13 @@ import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.criteria.Order;
-import java.util.HashSet;
-import java.util.Set;
-
 @RestController
 public class ProductDynamicFiltering {
 
     @GetMapping("/getSellingPrice")
-    public Product retrieveProductSellingPrice() {
+    public MappingJacksonValue retrieveProductSellingPrice() {
 
         Product product = new Product("Shoes", 23.5f, 22.1f);
-
 
         SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("sellingPrice");
         FilterProvider filters = new SimpleFilterProvider().addFilter("ProductFilter", filter);
@@ -27,6 +22,6 @@ public class ProductDynamicFiltering {
 
         value.setFilters(filters);
 
-        return product;
+        return value;
     }
 }
