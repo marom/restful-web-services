@@ -1,9 +1,11 @@
 package com.marom.restfulwebserivces.shop;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.Date;
 
+@JsonIgnoreProperties(value = {"product"})
 public class Order {
 
     private String product = null;
