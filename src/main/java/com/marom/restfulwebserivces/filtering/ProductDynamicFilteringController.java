@@ -14,19 +14,21 @@ public class ProductDynamicFilteringController {
     @GetMapping("/getSellingPrice")
     public MappingJacksonValue retrieveProductSellingPrice() {
 
-        Product product = new Product("Shoes", 23.5f, 22.1f);
-        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("sellingPrice");
-        FilterProvider filters = new SimpleFilterProvider().addFilter("ProductFilter", filter);
-        MappingJacksonValue value = new MappingJacksonValue(product);
-        value.setFilters(filters);
+        String filterExcept = "sellingPrice";
+        MappingJacksonValue value = createAndApplyFilter(filterExcept);
         return value;
     }
 
     @GetMapping("/getBuyingPrice")
     public MappingJacksonValue retrieveProductBuyingPrice() {
 
+        MappingJacksonValue value = createAndApplyFilter("buyingPrice");
+        return value;
+    }
+
+    private MappingJacksonValue createAndApplyFilter(String filterExcept) {
         Product product = new Product("Shoes", 23.5f, 22.1f);
-        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("buyingPrice");
+        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept(filterExcept);
         FilterProvider filters = new SimpleFilterProvider().addFilter("ProductFilter", filter);
         MappingJacksonValue value = new MappingJacksonValue(product);
         value.setFilters(filters);
