@@ -1,5 +1,8 @@
 package com.marom.restfulwebserivces.shop;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+
+@JsonFilter("ProductFilter")
 public class Product {
 
     private String name;
