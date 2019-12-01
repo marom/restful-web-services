@@ -1,11 +1,15 @@
 package com.marom.restfulwebserivces.shop;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 public class Order {
 
     private String product = null;
     private Integer quantity = null;
+
+    @JsonIgnore
     private Date shipDate = null;
 
     public Order(String product, Integer quantity, Date shipDate) {
