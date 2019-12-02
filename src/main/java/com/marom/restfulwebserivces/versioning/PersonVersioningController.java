@@ -27,4 +27,18 @@ public class PersonVersioningController {
     public PersonV2 paramV2() {
         return new PersonV2(new Name("PersonV2", "NameV2"));
     }
+
+    //localhost:8080/person/header
+    // and add header param: X-API-VERSION value:1
+    @GetMapping(value = "/person/header", headers = "X-API-VERSION=1")
+    public PersonV1 headerV1() {
+        return new PersonV1("PersonV1 Name");
+    }
+
+    //localhost:8080/person/header
+    // and add header param: X-API-VERSION value:2
+    @GetMapping(value = "/person/header", headers = "X-API-VERSION=2")
+    public PersonV2 headerV2() {
+        return new PersonV2(new Name("PersonV2", "NameV2"));
+    }
 }
