@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PersonVersioningController {
 
+    //name: uri versioning
     @GetMapping("/v1/person")
     public PersonV1 personV1() {
         return new PersonV1("PersonV1 Name");
@@ -16,6 +17,7 @@ public class PersonVersioningController {
         return new PersonV2(new Name("PersonV2", "NameV2"));
     }
 
+    //name: request parameter versioning
     //localhost:8080/person/param?version=1
     @GetMapping(value = "/person/param", params = "version=1")
     public PersonV1 paramV1() {
@@ -28,6 +30,7 @@ public class PersonVersioningController {
         return new PersonV2(new Name("PersonV2", "NameV2"));
     }
 
+    // name: header versioning
     //localhost:8080/person/header
     // and add header param: X-API-VERSION value:1
     @GetMapping(value = "/person/header", headers = "X-API-VERSION=1")
@@ -42,6 +45,7 @@ public class PersonVersioningController {
         return new PersonV2(new Name("PersonV2", "NameV2"));
     }
 
+    // name: accept header versioning or mime type versioning
     //localhost:8080/person/produces
     // and add Accept header param: application/my.company.app-v1+json
     @GetMapping(value = "/person/produces", produces = "application/my.company.app-v1+json")
