@@ -41,4 +41,18 @@ public class PersonVersioningController {
     public PersonV2 headerV2() {
         return new PersonV2(new Name("PersonV2", "NameV2"));
     }
+
+    //localhost:8080/person/produces
+    // and add Accept header param: application/my.company.app-v1+json
+    @GetMapping(value = "/person/produces", produces = "application/my.company.app-v1+json")
+    public PersonV1 producesV1() {
+        return new PersonV1("PersonV1 Name");
+    }
+
+    //localhost:8080/person/produces
+    // and add Accept header param: application/my.company.app-v2+json
+    @GetMapping(value = "/person/produces", produces = "application/my.company.app-v2+json")
+    public PersonV2 producesV2() {
+        return new PersonV2(new Name("PersonV2", "NameV2"));
+    }
 }
