@@ -51,7 +51,7 @@ public class UserJPAResource {
     @Operation(summary = "Create a user")
     @PostMapping("/jpa/users")
     public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
-        User savedUser = userServiceDao.save(user);
+        User savedUser = userRepository.save(user);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id")
