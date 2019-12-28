@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.jws.soap.SOAPBinding;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
@@ -63,4 +64,14 @@ public class UserJPAResource {
     public void deleteUser(@PathVariable int id) {
         userRepository.deleteById(id);
      }
+
+    @GetMapping("/jpa/users/{id}/posts")
+    public List<Post> retrieveUsersAllPosts(@PathVariable int id) {
+
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (!optionalUser.isPresent()) {
+            throw new UserNotFoundException("id=" + id);
+        }
+        return optionalUser.get().getPosts();
+    }
 }
