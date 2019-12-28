@@ -20,9 +20,11 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class UserJPAResource {
 
     private UserRepository userRepository;
+    private PostRepository postRepository;
 
-    public UserJPAResource(UserRepository userRepository) {
+    public UserJPAResource(UserRepository userRepository, PostRepository postRepository) {
         this.userRepository = userRepository;
+        this.postRepository = postRepository;
     }
 
     @Operation(summary = "Get a list of all users")
@@ -62,7 +64,7 @@ public class UserJPAResource {
     @DeleteMapping("/jpa/users/{id}")
     public void deleteUser(@PathVariable int id) {
         userRepository.deleteById(id);
-     }
+    }
 
     @GetMapping("/jpa/users/{id}/posts")
     public List<Post> retrieveUsersAllPosts(@PathVariable int id) {
@@ -72,5 +74,26 @@ public class UserJPAResource {
             throw new UserNotFoundException("id=" + id);
         }
         return optionalUser.get().getPosts();
+    }
+
+
+    @PostMapping("/jpa/users/{id}/posts")
+    public ResponseEntity<Object> createPost(@PathVariable int id, @RequestBody Post post) {
+
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (!optionalUser.isPresent()) {
+            throw new UserNotFoundException("id=" + id);
+        }
+
+        User user = optionalUser.get();
+        post.setUser(user);
+
+        postRepository.save(post);
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id")
+                .buildAndExpand(post.getId()).toUri();
+
+        return ResponseEntity.created(uri).build();
     }
 }
